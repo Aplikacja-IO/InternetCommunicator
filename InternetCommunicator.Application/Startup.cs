@@ -1,18 +1,27 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InternetCommunicator.Domain.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using InternetCommunicator.Infrastructure.Context;
 
 namespace InternetMessengerApp
 {
     public class Startup
     {
+        public static ServiceProvider serviceProvider;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,6 +34,11 @@ namespace InternetMessengerApp
         {
             services.AddControllersWithViews();
             services.AddSignalR();
+
+            var connection = Configuration.GetConnectionString("CommunicatorDatabase");
+            services.AddDbContextPool<CommunicatorDbContext>(options => options.UseSqlServer(connection));
+
+            serviceProvider = services.BuildServiceProvider();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
