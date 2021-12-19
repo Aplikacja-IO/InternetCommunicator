@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using InternetCommunicator.Domain.Models;
+using InternetCommunicator.Infrastructure.Context;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +27,13 @@ namespace InternetCommunicator.Api.Hubs
         }
         public async Task SendMessage(string user, string message)
         {
+            using (var context = new CommunicatorDbContext(Startup.ServiceProvider.GetRequiredService<DbContextOptions<CommunicatorDbContext>>())) {
+                var comment = new Comment();
+                comment.PostText = message;
+                comment.ComponentId = 1;
+                /*context.Comments.Add(comment);
+                context.SaveChanges();*/
+            }
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
         public async Task SencPrivateMessage(string toUser, string fromUser, string message)
