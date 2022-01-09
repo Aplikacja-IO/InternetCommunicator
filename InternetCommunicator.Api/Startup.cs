@@ -37,6 +37,7 @@ namespace InternetCommunicator.Api
             var connection = Configuration.GetConnectionString("CommunicatorDatabase");
             services.AddRazorPages();
             services.AddDbContextPool<CommunicatorDbContext>(options => options.UseSqlServer(connection));
+           
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InternetCommunicator.Api", Version = "v1" });
@@ -69,7 +70,7 @@ namespace InternetCommunicator.Api
             services.AddAuthentication(options => {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                }).AddJwtBearer(options =>
+            }).AddJwtBearer(options =>
             {
                 options.RequireHttpsMetadata = false;
                 options.SaveToken = true;
@@ -82,9 +83,11 @@ namespace InternetCommunicator.Api
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 };
             });
-            services.AddSignalR();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -110,7 +113,7 @@ namespace InternetCommunicator.Api
             {
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
-                endpoints.MapHub<ChatHub>("/chatHub");
+                endpoints.MapHub<ChatHub>("chatHub");
             });
         }
     }

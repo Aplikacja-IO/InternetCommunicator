@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -11,6 +12,7 @@ namespace InternetMessengerApp
 {
     public class Program
     {
+        public HubConnection connection { get; set; }
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();

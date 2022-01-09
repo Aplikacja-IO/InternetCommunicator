@@ -1,7 +1,14 @@
 ﻿"use strict";
 
-var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
-var tempComp = 0;
+//var connection = new signalR.HubConnectionBuilder().withUrl("ChatHub").build();
+connection = new signalR.HubConnectionBuilder()
+    .configureLogging(signalR.LogLevel.Debug)
+    .withUrl("http://localhost:5000/ChatHub", {
+        skipNegotiation: true,
+        transport: signalR.HttpTransportType.WebSockets
+    })
+    .build();
+
 document.getElementById("sendButton").disabled = true;
 
 connection.on("ReceiveMessage", function (ComponentID, message) {
