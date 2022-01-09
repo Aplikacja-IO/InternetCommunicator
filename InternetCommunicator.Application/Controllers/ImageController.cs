@@ -56,11 +56,3 @@ namespace Uploadimage.Controllers
         }
 	}
 }
-public partial class Image
-{
-    public int ComponentId { get; set; }
-    public string ImageUrl { get; set; }
-
-    public virtual Component Component { get; set; }
-}
-}
