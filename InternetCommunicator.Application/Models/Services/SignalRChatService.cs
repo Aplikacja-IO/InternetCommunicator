@@ -7,6 +7,8 @@ namespace InternetMessengerApp.Services
 {
     public class SignalRChatService
     {
+
+
         private readonly HubConnection _connection;
 
         public event Action<Post> MessageReceived;

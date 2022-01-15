@@ -2,6 +2,7 @@
 using InternetMessengerApp.Models.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,15 @@ namespace InternetMessengerApp.Models.Services
 {
     public class ServerAPIServices
     {
+        HubConnection connection;
+
+        public ServerAPIServices()
+        {
+            connection = new HubConnectionBuilder().WithUrl("https://localhost:44369/ChatHub")
+.Build();
+        }
+        
+
         string baseUrl = "https://localhost:44369/"; //tymczasowe, tutaj idzie adres serwera
 
         public async Task<string> GetUserJWTToken(UserInfo userInfo)

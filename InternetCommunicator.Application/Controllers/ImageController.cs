@@ -18,6 +18,7 @@ namespace Uploadimage.Controllers
 {
     public class ImageController : Controller
     {
+        /*
         [HttpGet]
         public ActionResult Add()
         {
@@ -54,5 +55,6 @@ namespace Uploadimage.Controllers
 
             return View(imageModel);
         }
+        */
 	}
 }
