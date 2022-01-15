@@ -18,14 +18,6 @@ form {
     padding: 50px 35px;
 }
 
-    form * {
-        font-family: 'Poppins',sans-serif;
-        color: # ffffff;
-        letter - spacing: 0.5 px;
-        outline: none;
-        border: none;
-    }
-
     form h1 {
         font - size: 40 px;
         font - weight: 500;

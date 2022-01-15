@@ -1,6 +1,60 @@
-﻿@{
-    ViewData["Title"] = "Rejestracja";
-}
-<h1>@ViewData["Title"]</h1>
+﻿@model InternetMessengerApp.Models.LoginModel;
 
-<p>Placeholder: implementacja Rejestracji</p>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/css/login.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+    <div class="register">
+        <form method="post" action="">
+            <h1>Zarejestruj się</h1>
+
+            <p>
+                Podaj ID:
+
+                @Html.EditorFor(model => model.User.userId)
+                @Html.ValidationMessageFor(model => model.User.userId)
+
+            </p>
+
+
+            <p>
+                Podaj nazwę użytkownika:
+
+                @Html.EditorFor(model => model.User.username)
+                @Html.ValidationMessageFor(model => model.User.username)
+            </p>
+
+
+            <p>
+                Podaj hasło:
+
+                @Html.EditorFor(model => model.User.password)
+                @Html.ValidationMessageFor(model => model.User.password)
+            </p>
+
+            <p class="submit"><input type="submit" name="commit" value="Register"></p>
+        </form>
+    </div>
+
+    <div class="form-group error">
+        @if (@ViewBag.Failedcount != null)
+        {
+
+            <label> Failed Attempt count is: @ViewBag.Failedcount</label>
+        }
+
+        @if (@ViewBag.NotValidUser != null)
+        {
+
+            <label> @ViewBag.NotValidUser</label>
+        }
+    </div>
+</body>
+</html>
