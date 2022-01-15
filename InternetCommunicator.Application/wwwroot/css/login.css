@@ -1,10 +1,9 @@
 ﻿body {
-    background - color: #080710;
+    background-color: #080710;
 }
 
-
 form {
-    height: auto;
+    height: 60%;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
@@ -18,40 +17,40 @@ form {
     padding: 50px 35px;
 }
 
-    form h1 {
-        font - size: 40 px;
-        font - weight: 500;
-        line - height: 42 px;
-        text - align: center;
-        margin - bottom: 40 px;
-    }
+form h1 {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+    margin-bottom: 40px;
+}
 
 label {
     display: block;
-    margin - top: 30 px;
-    font - size: 16 px;
-    font - weight: 500;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 input {
     display: block;
-    height: 50 px;
-    width: 100 %;
-    background - color: rgba(255, 255, 255, 0.07);
-    border - radius: 3 px;
-    padding: 0 10 px;
-    margin - top: 8 px;
-    margin - bottom: 8 px;
-    font - size: 14 px;
-    font - weight: 300;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 300;
 }
 
 ::placeholder {
     color: #e5e5e5;
 }
 
-input[type = button], input[type = submit], input[type = reset] {
-    background - color: #4CAF50;
+input[type=button], input[type=submit], input[type=reset] {
+    background-color: #4CAF50;
     border: none;
     color: white;
     padding: 16px 32px;
@@ -60,7 +59,7 @@ input[type = button], input[type = submit], input[type = reset] {
     cursor: pointer;
 }
 
-    input[type= submit]: hover {
-        background - color: #1f4720;
-        color: gray;
-    }
+input[type=submit]:hover {
+    background-color: #1f4720;
+    color: gray;
+}
