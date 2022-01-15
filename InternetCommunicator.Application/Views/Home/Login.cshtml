@@ -13,19 +13,28 @@
 
     <div class="login">
         <form method="post" action="">
-        <h1>Zaloguj się</h1>
+            <h1>Zaloguj się</h1>
+
             <p>
-                <input type="text" name="login" value="" placeholder="ID:">
+                ID:
+
                 @Html.EditorFor(model => model.User.userId)
                 @Html.ValidationMessageFor(model => model.User.userId)
+
             </p>
+            
+            
             <p>
-                <input type="text" name="login" value="" placeholder="User Name: ">
+                Username:
+
                 @Html.EditorFor(model => model.User.username)
                 @Html.ValidationMessageFor(model => model.User.username)
             </p>
+           
+            
             <p>
-                <input type="password" name="password" value="" placeholder="Password:">
+                Password:
+
                 @Html.EditorFor(model => model.User.password)
                 @Html.ValidationMessageFor(model => model.User.password)
             </p>
