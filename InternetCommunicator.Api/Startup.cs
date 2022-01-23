@@ -24,6 +24,7 @@ namespace InternetCommunicator.Api
 {
     public class Startup
     {
+        public static IServiceProvider ServiceProvider;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -34,6 +35,15 @@ namespace InternetCommunicator.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>
+            {
+                builder.WithOrigins("https://localhost:44369", "https://localhost", "https://localhost:44318")
+                     .AllowAnyHeader()
+                     .AllowAnyMethod()
+                     .AllowCredentials()
+                     .SetIsOriginAllowed((host) => true);
+            }));
+
             var connection = Configuration.GetConnectionString("CommunicatorDatabase");
             services.AddRazorPages();
             services.AddDbContextPool<CommunicatorDbContext>(options => options.UseSqlServer(connection));
@@ -85,11 +95,17 @@ namespace InternetCommunicator.Api
             services.AddSignalR();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            ServiceProvider = services.BuildServiceProvider();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("CorsPolicy");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

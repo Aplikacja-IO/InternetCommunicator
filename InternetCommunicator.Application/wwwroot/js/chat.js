@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:44369/chatHub").build();
 var tempComp = 0;
 document.getElementById("sendButton").disabled = true;
 
