@@ -17,10 +17,8 @@ namespace InternetCommunicator.Api.Controllers
         {
             _context = context;
         }
-        public async Task<RegisterUser> CreateNewUser(string login, string password)
+        public async Task<RegisterUser> CreateNewUser(string login, string password, UserFactoryService userFactory)
         {
-            UserFactoryService userFactory = new RegisterUserFactoryService(_context);
-
             RegisterUser user = userFactory.Create(login, password);
 
             _context.RegisterUsers.Add(user);
