@@ -1,4 +1,5 @@
-﻿using InternetCommunicator.Domain.Models;
+﻿using InternetCommunicator.Api.Services;
+using InternetCommunicator.Domain.Models;
 using InternetCommunicator.Infrastructure.Context;
 using System;
 using System.Collections.Generic;
@@ -18,17 +19,10 @@ namespace InternetCommunicator.Api.Controllers
         }
         public async Task<RegisterUser> CreateNewUser(string login, string password)
         {
-            var highestId = _context.RegisterUsers.AsQueryable().OrderByDescending(u => u.UserId).FirstOrDefault().UserId;
-            highestId++;
+            UserFactoryService userFactory = new RegisterUserFactoryService(_context);
 
-            var bytePassword = Encoding.ASCII.GetBytes(password);
-            var user = new RegisterUser
-            {
-                UserId = highestId,
-                UserName = login,
-                UserPassword = bytePassword,
-                RegisterDate = DateTime.Now
-            };
+            RegisterUser user = userFactory.Create(login, password);
+
             _context.RegisterUsers.Add(user);
             await _context.SaveChangesAsync();
             return user;

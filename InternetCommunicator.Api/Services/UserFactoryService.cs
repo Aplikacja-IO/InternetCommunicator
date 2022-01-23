@@ -27,7 +27,21 @@ namespace InternetCommunicator.Api.Services
         }
         public override RegisterUser Create(string login, string password)
         {
-            return null;
+            var highestId = _context.RegisterUsers.AsQueryable().OrderByDescending(u => u.UserId).FirstOrDefault().UserId;
+            highestId++;
+
+            var bytePassword = Encoding.ASCII.GetBytes(password);
+            var user = new RegisterUser
+            {
+                UserId = highestId,
+                UserName = login,
+                UserPassword = bytePassword,
+                RegisterDate = DateTime.Now
+            };
+
+            return user;
         }
     }
+
+
 }
