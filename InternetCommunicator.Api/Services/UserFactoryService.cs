@@ -43,5 +43,14 @@ namespace InternetCommunicator.Api.Services
         }
     }
 
-
+    public class CompanyUserFactorService : UserFactoryService
+    {
+        public CompanyUserFactorService(CommunicatorDbContext context) : base(context)
+        {
+        }
+        public override RegisterUser Create(string login, string password)
+        {
+            return null;
+        }
+    }
 }
