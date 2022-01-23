@@ -1,4 +1,5 @@
-﻿using InternetCommunicator.Domain.Models;
+﻿using InternetCommunicator.Api.Services;
+using InternetCommunicator.Domain.Models;
 using InternetCommunicator.Infrastructure.Context;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -42,7 +43,7 @@ namespace InternetCommunicator.Api.Controllers
         public async Task<ActionResult<RegisterUser>> PostRegisterUser(string login, string password)
         {
             var userService = new UserServices(_context);
-            var newUser = await userService.CreateNewUser(login, password);
+            var newUser = await userService.CreateNewUser(login, password, new RegisterUserFactoryService(_context));
 
             return CreatedAtAction("GetAllUsers", new { id = newUser.UserId }, newUser);
         }

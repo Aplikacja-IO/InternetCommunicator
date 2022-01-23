@@ -1,5 +1,6 @@
 ﻿body {
     background-color: #080710;
+    color: white;
 }
 
 form {
@@ -17,13 +18,13 @@ form {
     padding: 50px 35px;
 }
 
-form h1 {
-    font-size: 40px;
-    font-weight: 500;
-    line-height: 42px;
-    text-align: center;
-    margin-bottom: 40px;
-}
+    form h1 {
+        font-size: 40px;
+        font-weight: 500;
+        line-height: 42px;
+        text-align: center;
+        margin-bottom: 40px;
+    }
 
 label {
     display: block;
@@ -43,6 +44,7 @@ input {
     margin-bottom: 8px;
     font-size: 14px;
     font-weight: 300;
+    color: whitesmoke;
 }
 
 ::placeholder {
@@ -59,7 +61,7 @@ input[type=button], input[type=submit], input[type=reset] {
     cursor: pointer;
 }
 
-input[type=submit]:hover {
-    background-color: #1f4720;
-    color: gray;
-}
+    input[type=submit]:hover {
+        background-color: #1f4720;
+        color: gray;
+    }
